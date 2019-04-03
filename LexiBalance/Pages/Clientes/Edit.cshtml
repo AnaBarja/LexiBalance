@@ -2,10 +2,10 @@
 @model LexiBalance.Pages.Clientes.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar cliente";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>Cliente</h4>
 <hr />
@@ -30,14 +30,14 @@
                 <span asp-validation-for="Cliente.Telefono" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="Index">Volver a clientes</a>
 </div>
 
 @section Scripts {
