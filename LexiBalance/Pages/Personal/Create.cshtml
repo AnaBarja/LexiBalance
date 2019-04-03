@@ -2,10 +2,10 @@
 @model LexiBalance.Pages.Personal.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Insertar trabajador";
 }
 
-<h1>Create</h1>
+<h1>Insertar</h1>
 
 <h4>Trabajador</h4>
 <hr />
@@ -34,14 +34,14 @@
                 <span asp-validation-for="Trabajador.Direccion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Insertar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Volver a personal</a>
 </div>
 
 @section Scripts {

@@ -2,10 +2,10 @@
 @model LexiBalance.Pages.Personal.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalles";
 }
 
-<h1>Details</h1>
+<h1>Detalles</h1>
 
 <div>
     <h4>Trabajador</h4>
@@ -38,6 +38,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Trabajador.ID">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Trabajador.ID">Editar</a> |
+    <a asp-page="Index">Volver a personal</a>
 </div>
