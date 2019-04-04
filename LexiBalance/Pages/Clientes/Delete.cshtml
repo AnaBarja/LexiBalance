@@ -5,11 +5,9 @@
     ViewData["Title"] = "Borrar cliente";
 }
 
-<h1>Borrar</h1>
+<h1>¿Borrar cliente #@Html.DisplayFor(model => model.Cliente.ID)?</h1>
 
-<h3>Seguro que quieres borrar este cliente?</h3>
 <div>
-    <h4>Cliente</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -31,7 +29,7 @@
             @Html.DisplayFor(model => model.Cliente.Telefono)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Cliente.ID" />
         <input type="submit" value="Borrar" class="btn btn-danger" /> |
