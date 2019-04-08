@@ -1,5 +1,5 @@
 ﻿@page
-@model IndexModel
+@model LexiBalance.Models.Producto
 @{
     ViewData["Title"] = "Inicio";
 }
@@ -7,4 +7,8 @@
 <div class="text-center">
     <h1 class="display-4">Bienvenidx</h1>
     <p>ERP en proceso</p>
+</div>
+
+<div class="container">
+    @Model.Nombre
 </div>

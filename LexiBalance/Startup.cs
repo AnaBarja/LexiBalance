@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using LexiBalance.Models;
+using LexiBalance.Data;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace LexiBalance
 {
@@ -38,6 +40,11 @@ namespace LexiBalance
 
             services.AddDbContext<LexiBalanceContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("LexiBalanceContext")));
+
+            // Add framework services.
+            services.AddMvc();
+
+            services.AddEntityFrameworkSqlite().AddDbContext<SQLiteContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +66,18 @@ namespace LexiBalance
             app.UseCookiePolicy();
 
             app.UseMvc();
+
+            //Set up configuration sources.
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+
+            using (var db = new SQLiteContext())
+            {
+                db.Database.EnsureCreated();
+                db.Database.Migrate();
+            }
         }
     }
 }

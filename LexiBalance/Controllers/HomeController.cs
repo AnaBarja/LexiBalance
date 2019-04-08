@@ -1,0 +1,36 @@
+﻿using LexiBalance.Data;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+
+namespace LexiBalance.Controllers
+{
+    public class HomeController : Controller
+    {
+        private readonly SQLiteContext sqlite = new SQLiteContext();
+
+        public IActionResult Index()
+        {
+            var category = sqlite.Productos.First();
+            return View(category);
+        }
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
+
+        //public IActionResult Error()
+        //{
+
+        //}
+    }
+}
