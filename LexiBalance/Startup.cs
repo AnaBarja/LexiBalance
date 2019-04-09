@@ -38,8 +38,8 @@ namespace LexiBalance
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<LexiBalanceContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("LexiBalanceContext")));
+            services.AddDbContext<SQLiteContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             // Add framework services.
             services.AddMvc();
