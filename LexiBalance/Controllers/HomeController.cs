@@ -1,4 +1,4 @@
-﻿using LexiBalance.Data;
+﻿using LexiBalance.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 
@@ -6,7 +6,7 @@ namespace LexiBalance.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SQLiteContext sqlite = new SQLiteContext();
+        private readonly LexiBalanceContext sqlite = new LexiBalanceContext();
 
         public IActionResult Index()
         {

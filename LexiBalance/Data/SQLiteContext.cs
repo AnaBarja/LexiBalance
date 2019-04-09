@@ -5,6 +5,15 @@ namespace LexiBalance.Data
 {
     public class SQLiteContext : DbContext
     {
+        public SQLiteContext(DbContextOptions<SQLiteContext> options)
+            : base(options)
+        {
+        }
+        public SQLiteContext()
+        {
+
+        }
+
         public DbSet<Models.Producto> Productos { get; set; }
 
         public DbSet<Models.Trabajador> Trabajador { get; set; }
