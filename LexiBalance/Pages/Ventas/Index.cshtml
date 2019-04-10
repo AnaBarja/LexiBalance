@@ -1,0 +1,55 @@
+﻿@page
+@model LexiBalance.Pages.Ventas.IndexModel
+
+@{
+    ViewData["Title"] = "Ventas";
+}
+
+<h1>Ventas</h1>
+
+<p>
+    <a asp-page="Create">Insertar venta</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Venta[0].IDProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venta[0].IDCliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venta[0].IDVenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venta[0].Fecha)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Venta)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDVenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using LexiBalance.Models;
 
 namespace LexiBalance.Models
 {
@@ -29,5 +30,7 @@ namespace LexiBalance.Models
 
             optionsBuilder.UseSqlite(connection);
         }
+
+        public DbSet<LexiBalance.Models.Venta> Venta { get; set; }
     }
 }

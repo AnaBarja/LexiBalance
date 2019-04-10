@@ -1,0 +1,42 @@
+﻿@page
+@model LexiBalance.Pages.Ventas.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<h1>Detalles venta #@Html.DisplayFor(model => model.Venta.ID)</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.IDProducto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.IDProducto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.IDCliente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.IDCliente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.IDVenta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.IDVenta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.Fecha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.Fecha)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Venta.ID">Editar</a> |
+    <a asp-page="./Index">Volver a ventas</a>
+</div>

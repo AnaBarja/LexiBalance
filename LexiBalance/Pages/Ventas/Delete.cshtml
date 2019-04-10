@@ -1,0 +1,44 @@
+﻿@page
+@model LexiBalance.Pages.Ventas.DeleteModel
+
+@{
+    ViewData["Title"] = "Borrar";
+}
+
+<h1>¿Borrar la venta #@Html.DisplayFor(model => model.Venta.ID)?</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.IDProducto)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.IDProducto)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.IDCliente)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.IDCliente)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.IDVenta)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.IDVenta)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Venta.Fecha)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Venta.Fecha)
+        </dd>
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="Venta.ID" />
+        <input type="submit" value="Borrar" class="btn btn-danger" /> |
+        <a asp-page="./Index">Volver a ventas</a>
+    </form>
+</div>

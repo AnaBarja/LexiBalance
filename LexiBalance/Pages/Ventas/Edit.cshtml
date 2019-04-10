@@ -1,0 +1,50 @@
+﻿@page
+@model LexiBalance.Pages.Ventas.EditModel
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar venta #@Html.DisplayFor(model => model.Venta.ID)</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Venta.ID" />
+            <div class="form-group">
+                <label asp-for="Venta.IDProducto" class="control-label"></label>
+                <input asp-for="Venta.IDProducto" class="form-control" />
+                <span asp-validation-for="Venta.IDProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venta.IDCliente" class="control-label"></label>
+                <input asp-for="Venta.IDCliente" class="form-control" />
+                <span asp-validation-for="Venta.IDCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venta.IDVenta" class="control-label"></label>
+                <input asp-for="Venta.IDVenta" class="form-control" />
+                <span asp-validation-for="Venta.IDVenta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venta.Fecha" class="control-label"></label>
+                <input asp-for="Venta.Fecha" class="form-control" />
+                <span asp-validation-for="Venta.Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Volver a ventas</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
