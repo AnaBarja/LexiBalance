@@ -7,6 +7,7 @@ namespace LexiBalance.Models
 {
     public class Producto
     {
+   
         public enum Colores
         {
             Negro,

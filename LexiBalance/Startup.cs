@@ -35,10 +35,10 @@ namespace LexiBalance
             });
 
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<LexiBalanceContext>(options =>
-                    options.UseSqlite("DataSource=DefaultConnection"));
+            //services.AddDbContext<LexiBalanceContext>(options =>
+            //        options.UseSqlite("DataSource=DefaultConnection"));
 
             // Add framework services.
             services.AddMvc();
@@ -60,12 +60,6 @@ namespace LexiBalance
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-            app.UseCookiePolicy();
-
-            app.UseMvc();
-
             //Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json")
@@ -74,9 +68,17 @@ namespace LexiBalance
 
             using (var db = new LexiBalanceContext())
             {
-                db.Database.EnsureCreated();
+                //db.Database.EnsureCreated();
                 //db.Database.Migrate();
             }
+
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+
+            app.UseMvc();
+
+
         }
     }
 }
