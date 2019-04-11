@@ -13,9 +13,9 @@ namespace LexiBalance.Migrations
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    IDProducto = table.Column<int>(nullable: false),
-                    IDCliente = table.Column<int>(nullable: false),
-                    IDVenta = table.Column<int>(nullable: false),
+                    Producto = table.Column<int>(nullable: false),
+                    Cliente = table.Column<int>(nullable: false),
+                    Trabajador = table.Column<int>(nullable: false),
                     Fecha = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>

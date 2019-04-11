@@ -1,11 +1,10 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using LexiBalance.Models;
 
 namespace LexiBalance.Models
 {
     public class LexiBalanceContext : DbContext
-    
+
     {
         public LexiBalanceContext(DbContextOptions<LexiBalanceContext> options)
      : base(options)
@@ -22,6 +21,8 @@ namespace LexiBalance.Models
 
         public DbSet<Models.Cliente> Cliente { get; set; }
 
+        public DbSet<LexiBalance.Models.Venta> Venta { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "C:\\Users\\Ana\\Desktop\\ProyectoDAM\\LexiBalance.db" };
@@ -31,6 +32,5 @@ namespace LexiBalance.Models
             optionsBuilder.UseSqlite(connection);
         }
 
-        public DbSet<LexiBalance.Models.Venta> Venta { get; set; }
     }
 }

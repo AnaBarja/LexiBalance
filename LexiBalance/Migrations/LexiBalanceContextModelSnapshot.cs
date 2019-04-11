@@ -75,13 +75,13 @@ namespace LexiBalance.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("Cliente");
+
                     b.Property<DateTime>("Fecha");
 
-                    b.Property<int>("IDCliente");
+                    b.Property<int>("Producto");
 
-                    b.Property<int>("IDProducto");
-
-                    b.Property<int>("IDVenta");
+                    b.Property<int>("Trabajador");
 
                     b.HasKey("ID");
 
