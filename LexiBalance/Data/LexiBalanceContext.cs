@@ -1,11 +1,10 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
-using LexiBalance.Models;
 
 namespace LexiBalance.Models
 {
     public class LexiBalanceContext : DbContext
-    
+
     {
         public LexiBalanceContext(DbContextOptions<LexiBalanceContext> options)
      : base(options)
