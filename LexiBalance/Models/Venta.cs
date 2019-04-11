@@ -8,9 +8,9 @@ namespace LexiBalance.Models
     public class Venta
     {
         public int ID { get; set; }
-        public List<Producto> Producto { get; set; }
-        public List<Cliente> Cliente { get; set; }
-        public List<Trabajador> Trabajador { get; set; }
+        public string Producto { get; set; }
+        public string Cliente { get; set; }
+        public string Trabajador { get; set; }
         public DateTime Fecha { get; set; }
     }
 }
