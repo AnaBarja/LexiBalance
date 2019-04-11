@@ -14,10 +14,20 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                    <label asp-for="Venta.IDProducto" class="control-label"></label>
+                    <input asp-for="Venta.IDProducto" class="form-control" />
+                    <span asp-validation-for="Venta.IDProducto" class="text-danger"></span>
+                </div>
+            <@*div class="form-group">
                 <label asp-for="Venta.IDProducto" class="control-label"></label>
-                <input asp-for="Venta.IDProducto" class="form-control" />
+                <select asp-for="Venta.IDProducto" class="form-control">
+                    @foreach (var item in )
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
                 <span asp-validation-for="Venta.IDProducto" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <label asp-for="Venta.IDCliente" class="control-label"></label>
                 <input asp-for="Venta.IDCliente" class="form-control" />
