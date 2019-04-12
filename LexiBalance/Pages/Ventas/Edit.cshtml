@@ -16,17 +16,32 @@
             <input type="hidden" asp-for="Venta.ID" />
             <div class="form-group">
                 <label asp-for="Venta.Producto" class="control-label"></label>
-                <input asp-for="Venta.Producto" class="form-control" />
+                <select asp-for="Venta.Producto" class="form-control">
+                    @foreach (string item in LexiBalance.Pages.Ventas.EditModel.productos)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
                 <span asp-validation-for="Venta.Producto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Venta.Cliente" class="control-label"></label>
-                <input asp-for="Venta.Cliente" class="form-control" />
+                <select asp-for="Venta.Cliente" class="form-control">
+                    @foreach (string item in LexiBalance.Pages.Ventas.EditModel.clientes)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
                 <span asp-validation-for="Venta.Cliente" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Venta.Trabajador" class="control-label"></label>
-                <input asp-for="Venta.Trabajador" class="form-control" />
+                <select asp-for="Venta.Trabajador" class="form-control">
+                    @foreach (string item in LexiBalance.Pages.Ventas.EditModel.trabajadores)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
                 <span asp-validation-for="Venta.Trabajador" class="text-danger"></span>
             </div>
             <div class="form-group">
