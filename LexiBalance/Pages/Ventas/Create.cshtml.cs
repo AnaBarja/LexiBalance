@@ -1,7 +1,7 @@
 ﻿using LexiBalance.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,6 +12,8 @@ namespace LexiBalance.Pages.Ventas
         private readonly LexiBalance.Models.LexiBalanceContext _context;
 
         public static List<string> productos;
+        public static List<string> trabajadores;
+        public static List<string> clientes;
 
         public CreateModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -21,25 +23,44 @@ namespace LexiBalance.Pages.Ventas
         public IActionResult OnGet()
         {
             productos = new List<string>();
-            var connection = new SqliteConnection();
+            trabajadores = new List<string>();
+            clientes = new List<string>();
 
-            connection.ConnectionString = "DataSource=DefaultConnection";
-            connection.Open();
-
-            using (var transaction = connection.BeginTransaction())
+            using (var connection = _context.Database.GetDbConnection())
             {
-                var selectCommand = connection.CreateCommand();
-                selectCommand.Transaction = transaction;
-                selectCommand.CommandText = "SELECT Nombre FROM Productos";
-                using (var reader = selectCommand.ExecuteReader())
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
                 {
-                    while (reader.Read())
+                    command.CommandText = "SELECT Nombre FROM Productos";
+                    using (var reader = command.ExecuteReader())
                     {
-                        productos.Add(reader.GetString(0));
+                        while (reader.Read())
+                        {
+                            productos.Add(reader.GetString(0));
+                        }
+                    }
+
+                    command.CommandText = "SELECT Nombre FROM Trabajador";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            trabajadores.Add(reader.GetString(0));
+                        }
+                    }
+
+                    command.CommandText = "SELECT Nombre FROM Cliente";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            clientes.Add(reader.GetString(0));
+                        }
                     }
                 }
-                transaction.Commit();
             }
+
             return Page();
         }
 
