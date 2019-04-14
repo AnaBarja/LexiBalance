@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace LexiBalance.Models
 {
@@ -25,7 +26,8 @@ namespace LexiBalance.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "C:\\Users\\Ana\\Desktop\\ProyectoDAM\\LexiBalance.db" };
+            string directory = Environment.GetEnvironmentVariable("homepath");
+            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = directory + "\\LexiBalance.db" };
             var connectionString = connectionStringBuilder.ToString();
             var connection = new SqliteConnection(connectionString);
 
