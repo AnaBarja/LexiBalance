@@ -48,30 +48,30 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT Nombre FROM Productos";
+                    command.CommandText = "SELECT ID, Nombre FROM Productos where cantidad > 0";
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            productos.Add(reader.GetString(0));
+                            productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
                         }
                     }
 
-                    command.CommandText = "SELECT Nombre FROM Trabajador";
+                    command.CommandText = "SELECT ID, Nombre FROM Trabajador";
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            trabajadores.Add(reader.GetString(0));
+                            trabajadores.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
                         }
                     }
 
-                    command.CommandText = "SELECT Nombre FROM Cliente";
+                    command.CommandText = "SELECT ID, Nombre FROM Cliente";
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            clientes.Add(reader.GetString(0));
+                            clientes.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
                         }
                     }
                 }
