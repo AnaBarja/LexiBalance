@@ -27,7 +27,7 @@ namespace LexiBalance.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string directory = Environment.GetEnvironmentVariable("homepath");
-            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = directory + "\\LexiBalance.db" };
+            var connectionStringBuilder = new SqliteConnectionStringBuilder { DataSource = "LexiBalance.db" };
             var connectionString = connectionStringBuilder.ToString();
             var connection = new SqliteConnection(connectionString);
 
