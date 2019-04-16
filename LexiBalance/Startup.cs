@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -33,7 +34,15 @@ namespace LexiBalance
             //        options.UseSqlite("DataSource=DefaultConnection"));
 
             // Add framework services.
-            services.AddMvc();
+            services.AddMvc()
+.AddRazorPagesOptions(options =>
+{
+    options.Conventions.AuthorizePage("/Personal/Create");
+    options.Conventions.AuthorizePage("/Personal/Edit");
+    options.Conventions.AuthorizePage("/Personal/Delete");
+    options.Conventions.AllowAnonymousToPage("/Index");
+})
+.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddEntityFrameworkSqlite().AddDbContext<LexiBalanceContext>();
         }
