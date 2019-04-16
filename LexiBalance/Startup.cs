@@ -34,15 +34,13 @@ namespace LexiBalance
             //        options.UseSqlite("DataSource=DefaultConnection"));
 
             // Add framework services.
-            services.AddMvc()
-.AddRazorPagesOptions(options =>
+            services.AddMvc().AddRazorPagesOptions(options =>
 {
     options.Conventions.AuthorizePage("/Personal/Create");
     options.Conventions.AuthorizePage("/Personal/Edit");
     options.Conventions.AuthorizePage("/Personal/Delete");
     options.Conventions.AllowAnonymousToPage("/Index");
-})
-.SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddEntityFrameworkSqlite().AddDbContext<LexiBalanceContext>();
         }
