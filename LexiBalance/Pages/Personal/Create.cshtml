@@ -4,46 +4,51 @@
 @{
     ViewData["Title"] = "Insertar trabajador";
 }
+@if (User.Identity.Name.Equals("Gerente"))
+{
+    <h1>Insertar trabajador</h1>
 
-<h1>Insertar trabajador</h1>
+    <hr />
 
-<hr />
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Trabajador.Nombre" class="control-label"></label>
-                <input asp-for="Trabajador.Nombre" class="form-control" />
-                <span asp-validation-for="Trabajador.Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trabajador.DNI" class="control-label"></label>
-                <input asp-for="Trabajador.DNI" class="form-control" />
-                <span asp-validation-for="Trabajador.DNI" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trabajador.Telefono" class="control-label"></label>
-                <input asp-for="Trabajador.Telefono" class="form-control" />
-                <span asp-validation-for="Trabajador.Telefono" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Trabajador.Direccion" class="control-label"></label>
-                <input asp-for="Trabajador.Direccion" class="form-control" />
-                <span asp-validation-for="Trabajador.Direccion" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Insertar" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Trabajador.Nombre" class="control-label"></label>
+                    <input asp-for="Trabajador.Nombre" class="form-control" />
+                    <span asp-validation-for="Trabajador.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trabajador.DNI" class="control-label"></label>
+                    <input asp-for="Trabajador.DNI" class="form-control" />
+                    <span asp-validation-for="Trabajador.DNI" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trabajador.Telefono" class="control-label"></label>
+                    <input asp-for="Trabajador.Telefono" class="form-control" />
+                    <span asp-validation-for="Trabajador.Telefono" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Trabajador.Direccion" class="control-label"></label>
+                    <input asp-for="Trabajador.Direccion" class="form-control" />
+                    <span asp-validation-for="Trabajador.Direccion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Insertar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-page="Index">Volver a personal</a>
-</div>
+    <div>
+        <a asp-page="Index">Volver a personal</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}}
+}
+else
+{
+    Response.Redirect("/Index");
 }

@@ -4,52 +4,58 @@
 @{
     ViewData["Title"] = "Personal";
 }
+@if (User.Identity.Name.Equals("Gerente"))
+{
+    <h1>Personal</h1>
 
-<h1>Personal</h1>
-
-<p>
-    <a asp-page="Create">Insertar trabajador</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Trabajador[0].Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trabajador[0].DNI)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trabajador[0].Telefono)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Trabajador[0].Direccion)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Trabajador)
-        {
+    <p>
+        <a asp-page="Create">Insertar trabajador</a>
+    </p>
+    <table class="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DNI)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telefono)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Direccion)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Trabajador[0].Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Trabajador[0].DNI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Trabajador[0].Telefono)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Trabajador[0].Direccion)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Trabajador)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DNI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Telefono)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    Response.Redirect("/Index");
+}

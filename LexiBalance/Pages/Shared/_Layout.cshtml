@@ -36,7 +36,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Clientes/Index">Clientes</a>
                             </li>
-                            @*@if (User.IsInRole("Gerente"))*@
+                            @if (User.Identity.Name.Equals("Gerente"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Personal/Index">Personal</a>
