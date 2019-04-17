@@ -4,56 +4,62 @@
 @{
     ViewData["Title"] = "Insertar";
 }
+@if (User.Identity.Name.Equals("Gerente"))
+{
+    <h1>Insertar producto</h1>
 
-<h1>Insertar producto</h1>
+    <hr />
 
-<hr />
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Productos.Nombre" class="control-label"></label>
-                <input asp-for="Productos.Nombre" class="form-control" />
-                <span asp-validation-for="Productos.Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Productos.Precio" class="control-label"></label>
-                <input asp-for="Productos.Precio" class="form-control" />
-                <span asp-validation-for="Productos.Precio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Productos.Cantidad" class="control-label"></label>
-                <input asp-for="Productos.Cantidad" class="form-control" />
-                <span asp-validation-for="Productos.Cantidad" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Productos.Color" class="control-label"></label>
-                <select asp-for="Productos.Color" class="form-control">
-                    <option value="Negro">Negro</option>
-                    <option value="Blanco">Blanco</option>
-                    <option value="Azul">Azul</option>
-                    <option value="Rojo">Rojo</option>
-                </select>
-                <span asp-validation-for="Productos.Color" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Productos.Caracteristicas" class="control-label"></label>
-                <textarea asp-for="Productos.Caracteristicas" class="form-control"></textarea>
-                <span asp-validation-for="Productos.Caracteristicas" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Insertar" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Productos.Nombre" class="control-label"></label>
+                    <input asp-for="Productos.Nombre" class="form-control" />
+                    <span asp-validation-for="Productos.Nombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Productos.Precio" class="control-label"></label>
+                    <input asp-for="Productos.Precio" class="form-control" />
+                    <span asp-validation-for="Productos.Precio" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Productos.Cantidad" class="control-label"></label>
+                    <input asp-for="Productos.Cantidad" class="form-control" />
+                    <span asp-validation-for="Productos.Cantidad" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Productos.Color" class="control-label"></label>
+                    <select asp-for="Productos.Color" class="form-control">
+                        <option value="Negro">Negro</option>
+                        <option value="Blanco">Blanco</option>
+                        <option value="Azul">Azul</option>
+                        <option value="Rojo">Rojo</option>
+                    </select>
+                    <span asp-validation-for="Productos.Color" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Productos.Caracteristicas" class="control-label"></label>
+                    <textarea asp-for="Productos.Caracteristicas" class="form-control"></textarea>
+                    <span asp-validation-for="Productos.Caracteristicas" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Insertar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-page="Index">Volver a productos</a>
-</div>
+    <div>
+        <a asp-page="Index">Volver a productos</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+}
+else
+{
+    Response.Redirect("/Index");
 }

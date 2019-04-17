@@ -36,13 +36,13 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Clientes/Index">Clientes</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Productos/Index">Productos</a>
+                            </li>
                             @if (User.Identity.Name.Equals("Gerente"))
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Personal/Index">Personal</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Productos/Index">Productos</a>
                                 </li>
                             }
                         }

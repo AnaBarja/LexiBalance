@@ -4,47 +4,53 @@
 @{
     ViewData["Title"] = "Borrar";
 }
+@if (User.Identity.Name.Equals("Gerente"))
+{
+    <h1>¿Borrar el producto #@Html.DisplayFor(model => model.Productos.ID)?</h1>
 
-<h1>¿Borrar el producto #@Html.DisplayFor(model => model.Productos.ID)?</h1>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Productos.Nombre)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Productos.Nombre)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Productos.Precio)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Productos.Precio)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Productos.Cantidad)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Productos.Cantidad)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Productos.Color)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Productos.Color)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Productos.Caracteristicas)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Productos.Caracteristicas)
+            </dd>
+        </dl>
 
-<div>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Productos.Nombre)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Productos.Nombre)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Productos.Precio)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Productos.Precio)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Productos.Cantidad)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Productos.Cantidad)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Productos.Color)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Productos.Color)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Productos.Caracteristicas)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Productos.Caracteristicas)
-        </dd>
-    </dl>
-
-    <form method="post">
-        <input type="hidden" asp-for="Productos.ID" />
-        <input type="submit" value="Borrar" class="btn btn-danger" /> |
-        <a asp-page="Index">Volver a productos</a>
-    </form>
-</div>
+        <form method="post">
+            <input type="hidden" asp-for="Productos.ID" />
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            <a asp-page="Index">Volver a productos</a>
+        </form>
+    </div>
+}
+else
+{
+    Response.Redirect("/Index");
+}
