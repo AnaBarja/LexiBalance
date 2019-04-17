@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\DefaultController.cs" />
     <Compile Remove="Data\SQLiteContext.cs" />
   </ItemGroup>
 

@@ -36,9 +36,10 @@ namespace LexiBalance
             // Add framework services.
             services.AddMvc().AddRazorPagesOptions(options =>
 {
-    options.Conventions.AuthorizePage("/Personal/Create");
-    options.Conventions.AuthorizePage("/Personal/Edit");
-    options.Conventions.AuthorizePage("/Personal/Delete");
+    options.Conventions.AuthorizeFolder("/Personal");
+    options.Conventions.AuthorizeFolder("/Productos");
+    options.Conventions.AuthorizeFolder("/Ventas");
+    options.Conventions.AuthorizeFolder("/Clientes");
     options.Conventions.AllowAnonymousToPage("/Index");
 }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
