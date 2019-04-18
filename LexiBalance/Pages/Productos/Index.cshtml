@@ -6,10 +6,12 @@
 }
 
 <h1>Productos</h1>
-
-<p>
-    <a asp-page="Create">Insertar producto</a>
-</p>
+@if (User.Identity.Name.Equals("Gerente"))
+{
+    <p>
+        <a asp-page="Create">Insertar producto</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -51,9 +53,17 @@
                     @Html.DisplayFor(modelItem => item.Caracteristicas)
                 </td>
                 <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+                    @if (User.Identity.Name.Equals("Gerente"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Editar</a>
+                        <a>|</a>
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.ID">Detalles</a>
+                    @if (User.Identity.Name.Equals("Gerente"))
+                    {
+                        <a>|</a>
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Borrar</a>
+                    }
                 </td>
             </tr>
         }

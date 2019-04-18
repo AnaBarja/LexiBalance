@@ -6,4 +6,14 @@
 <div>
     <h1 class="display-4">Bienvenidx</h1>
     <p>ERP en proceso</p>
+    <p><b>MEJOR TRABAJADOR:</b> @LexiBalance.Pages.IndexModel.mejorTrabajador</p>
+    <b>ÚLTIMAS VENTAS:</b>
+    @for (int i = 0; i < LexiBalance.Pages.IndexModel.producto.Count; i++)
+    {
+        <p>
+            @LexiBalance.Pages.IndexModel.producto[i]
+            x
+            @LexiBalance.Pages.IndexModel.cantidadProducto[i]
+        </p>
+    }
 </div>
