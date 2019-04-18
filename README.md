@@ -24,7 +24,9 @@
 
 > Se va a añadir un usuario "gerente" que puede insertar ventas, clientes, productos y trabajadores; y un usuario "trabajador" que puede insertar ventas y clientes.
 
-  Creación de la gestión de usuarios. La BD ahora está dentro del proyecto para mejor acceso.
+  Creación de la gestión de usuarios. La BD ahora está dentro del proyecto para mejor acceso. Implementando los usuarios.
+  Trabajador: puede acceder a ventas (crear, editar, borrar, ver detalles), clientes (crear, editar, borrar, ver detalles) y productos (ver detalles).
+  Gerente: todo
 
 
 
