@@ -95,11 +95,17 @@ namespace LexiBalance.Pages.Ventas
                             NUMERO = reader.GetInt32(0);
                         }
                     }
-
                     command.CommandText = "UPDATE Productos SET Cantidad = Cantidad -" + NUMERO + " where ID = " +
                         "(select id from Productos where Nombre =(select substr(Producto, instr(Producto, ' ') + 1) " +
                         "from Venta order by ID desc limit 1))";
                     var update = command.ExecuteReader();
+                }
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = " +
+                    "(select ID from Venta order by ID desc limit 1)";
+                    var fecha = command.ExecuteReader();
                 }
             }
             return RedirectToPage("./Index");
