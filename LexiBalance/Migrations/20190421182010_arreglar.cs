@@ -4,7 +4,7 @@ using System;
 
 namespace LexiBalance.Migrations
 {
-    public partial class cambioPrecio : Migration
+    public partial class arreglar : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

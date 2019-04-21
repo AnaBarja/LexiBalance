@@ -33,7 +33,8 @@ namespace LexiBalance.Pages
                         "order by COUNT(Trabajador) desc limit 1;";
                     using (var reader = command.ExecuteReader())
                     {
-                        mejorTrabajador = reader.GetString(1);
+                        if (reader.Read() && !reader.IsDBNull(1) && !reader.IsDBNull(0))
+                            mejorTrabajador = reader.GetString(1);
                     }
 
                     command.CommandText = "SELECT Producto, Cantidad from Venta order by Fecha desc limit 3;";
@@ -41,8 +42,11 @@ namespace LexiBalance.Pages
                     {
                         while (reader.Read())
                         {
-                            producto.Add(reader.GetString(0));
-                            cantidadProducto.Add(reader.GetInt32(1));
+                            if (!reader.IsDBNull(0) && !reader.IsDBNull(1))
+                            {
+                                producto.Add(reader.GetString(0));
+                                cantidadProducto.Add(reader.GetInt32(1));
+                            }
                         }
                     }
                 }
