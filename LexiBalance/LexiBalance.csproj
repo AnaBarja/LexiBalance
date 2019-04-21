@@ -8,6 +8,8 @@
   <ItemGroup>
     <Compile Remove="Controllers\DefaultController.cs" />
     <Compile Remove="Data\SQLiteContext.cs" />
+    <Compile Remove="Migrations\20190421151543_cambioPrecio.cs" />
+    <Compile Remove="Migrations\20190421151543_cambioPrecio.Designer.cs" />
   </ItemGroup>
 
 

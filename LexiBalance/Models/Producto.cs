@@ -18,7 +18,7 @@ namespace LexiBalance.Models
 
         public int ID { get; set; }
         public string Nombre { get; set; }
-        public decimal Precio { get; set; }
+        public string Precio { get; set; }
         public int Cantidad { get; set; }
         public Colores Color { get; set; }
         public string Caracteristicas { get; set; }
