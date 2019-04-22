@@ -1,6 +1,7 @@
 # LexiBalance
 
 ## Avances en el proyecto
+Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
 - [x] Creación de la web
 - [x] Creacion de los MVC
 - [x] Creación de la base de datos
@@ -9,7 +10,7 @@
 - [ ] Creación de usuario gerente y trabajador (en proceso)
 - [ ] Rediseño web
 - [ ] Testear
-- [ ] Entrega con el informa final y vídeo explicativo
+- [ ] Entrega con el informe final y vídeo explicativo
 
 ## Semana a semana
 
@@ -19,7 +20,7 @@
 ###### Segunda semana (08/04/2019 - 14/04/2019) 
   Creación de la BD e implementación. Creación de clase ventas, al insertar una nueva venta con distintos SELECT se elige el producto, trabajador y cliente ya existentes en la BD. La cantidad del producto vendido disminuye en la cantidad total del producto.
   
-###### Tercera semana (15/04/2019 - /04/2019)
+###### Tercera semana (15/04/2019 - 21/04/2019)
 > La BD va a ser gestionada de forma más compleja con distintas cantidades que se pueden vender de un mismo producto.
 
 > Se va a añadir un usuario "gerente" que puede insertar ventas, clientes, productos y trabajadores; y un usuario "trabajador" que puede insertar ventas y clientes.
@@ -27,7 +28,8 @@
   Creación de la gestión de usuarios. La BD ahora está dentro del proyecto para mejor acceso. Implementando los usuarios.
   Trabajador: puede acceder a ventas (crear, editar, borrar, ver detalles), clientes (crear, editar, borrar, ver detalles) y productos (ver detalles).
   Gerente: todo
+  Al añadir una venta se introduce la fecha automáticamente, no hay que indicarla, mejor usabilidad. Los campos tienen límites. Ya se pueden poner decimales a los productos. Si la BD está vacía no falla. Cambios visuales (trabajador no ve la pestaña de personal, ni ve que se puedan editar, borrar ni crear productos)
 
-
+###### Cuarta semana (22/04/2019 - /04/2019)
 
 
