@@ -14,6 +14,7 @@ namespace LexiBalance.Pages.Ventas
         public static List<string> productos;
         public static List<string> trabajadores;
         public static List<string> clientes;
+        public static List<int> numMax;
 
         public CreateModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -25,6 +26,7 @@ namespace LexiBalance.Pages.Ventas
             productos = new List<string>();
             trabajadores = new List<string>();
             clientes = new List<string>();
+            numMax = new List<int>();
 
             using (var connection = _context.Database.GetDbConnection())
             {
@@ -32,13 +34,16 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT ID, Nombre FROM Productos where cantidad > 0";
+                    command.CommandText = "SELECT ID, Nombre, Cantidad FROM Productos where cantidad > 0";
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             if (!reader.IsDBNull(1) && !reader.IsDBNull(0))
+                            {
                                 productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
+                                numMax.Add(reader.GetInt32(2));
+                            }
                         }
                     }
 
