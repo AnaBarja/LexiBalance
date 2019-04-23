@@ -15,6 +15,7 @@ namespace LexiBalance.Pages.Ventas
         public static List<string> trabajadores;
         public static List<string> clientes;
         public static List<int> numMax;
+        public static int numProducto;
 
         public CreateModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -27,6 +28,7 @@ namespace LexiBalance.Pages.Ventas
             trabajadores = new List<string>();
             clientes = new List<string>();
             numMax = new List<int>();
+            numProducto = 0;
 
             using (var connection = _context.Database.GetDbConnection())
             {
