@@ -31,5 +31,6 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
   Al añadir una venta se introduce la fecha automáticamente, no hay que indicarla, mejor usabilidad. Los campos tienen límites. Ya se pueden poner decimales a los productos. Si la BD está vacía no falla. Cambios visuales (trabajador no ve la pestaña de personal, ni ve que se puedan editar, borrar ni crear productos)
 
 ###### Cuarta semana (22/04/2019 - /04/2019)
-
+  Al añadir una venta y especificar la cantidad de producto, si la cantidad es mayor a la cantidad existente del producto no se sale de la página (la venta se guarda, se compara la cantidad del producto y la introducida, si es mayor la venta se borra). Al poner una cantidad menor se vuelve al índice.
+  Mejora en los campos, poniendo número máximo de longitud y que sean obligatorios.
 
