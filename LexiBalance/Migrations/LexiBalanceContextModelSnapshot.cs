@@ -21,11 +21,14 @@ namespace LexiBalance.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CP");
+                    b.Property<int>("CP")
+                        .HasMaxLength(5);
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .IsRequired();
 
-                    b.Property<int>("Telefono");
+                    b.Property<int>("Telefono")
+                        .HasMaxLength(9);
 
                     b.HasKey("ID");
 
@@ -39,13 +42,16 @@ namespace LexiBalance.Migrations
 
                     b.Property<int>("Cantidad");
 
-                    b.Property<string>("Caracteristicas");
+                    b.Property<string>("Caracteristicas")
+                        .IsRequired();
 
                     b.Property<int>("Color");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .IsRequired();
 
-                    b.Property<string>("Precio");
+                    b.Property<string>("Precio")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
@@ -57,13 +63,18 @@ namespace LexiBalance.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("DNI");
+                    b.Property<string>("DNI")
+                        .IsRequired()
+                        .HasMaxLength(9);
 
-                    b.Property<string>("Direccion");
+                    b.Property<string>("Direccion")
+                        .IsRequired();
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .IsRequired();
 
-                    b.Property<int>("Telefono");
+                    b.Property<int>("Telefono")
+                        .HasMaxLength(9);
 
                     b.HasKey("ID");
 
@@ -77,13 +88,16 @@ namespace LexiBalance.Migrations
 
                     b.Property<int>("Cantidad");
 
-                    b.Property<string>("Cliente");
+                    b.Property<string>("Cliente")
+                        .IsRequired();
 
                     b.Property<DateTime>("Fecha");
 
-                    b.Property<string>("Producto");
+                    b.Property<string>("Producto")
+                        .IsRequired();
 
-                    b.Property<string>("Trabajador");
+                    b.Property<string>("Trabajador")
+                        .IsRequired();
 
                     b.HasKey("ID");
 

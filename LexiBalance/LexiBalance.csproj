@@ -8,8 +8,30 @@
   <ItemGroup>
     <Compile Remove="Controllers\DefaultController.cs" />
     <Compile Remove="Data\SQLiteContext.cs" />
+    <Compile Remove="Migrations\20190401150912_Initial.cs" />
+    <Compile Remove="Migrations\20190401150912_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20190403154336_Segunda.cs" />
+    <Compile Remove="Migrations\20190403154336_Segunda.Designer.cs" />
+    <Compile Remove="Migrations\20190410182041_Tercera.cs" />
+    <Compile Remove="Migrations\20190410182041_Tercera.Designer.cs" />
+    <Compile Remove="Migrations\20190411184121_prueba.cs" />
+    <Compile Remove="Migrations\20190411184121_prueba.Designer.cs" />
+    <Compile Remove="Migrations\20190412190737_prueba2.cs" />
+    <Compile Remove="Migrations\20190412190737_prueba2.Designer.cs" />
+    <Compile Remove="Migrations\20190412191608_final.cs" />
+    <Compile Remove="Migrations\20190412191608_final.Designer.cs" />
+    <Compile Remove="Migrations\20190414155116_mejoraVentas.cs" />
+    <Compile Remove="Migrations\20190414155116_mejoraVentas.Designer.cs" />
+    <Compile Remove="Migrations\20190415185055_Union.cs" />
+    <Compile Remove="Migrations\20190415185055_Union.Designer.cs" />
     <Compile Remove="Migrations\20190421151543_cambioPrecio.cs" />
     <Compile Remove="Migrations\20190421151543_cambioPrecio.Designer.cs" />
+    <Compile Remove="Migrations\20190421160953_cambioPrecio.cs" />
+    <Compile Remove="Migrations\20190421160953_cambioPrecio.Designer.cs" />
+    <Compile Remove="Migrations\20190421182010_arreglar.cs" />
+    <Compile Remove="Migrations\20190421182010_arreglar.Designer.cs" />
+    <Compile Remove="Migrations\20190424192926_deCero.cs" />
+    <Compile Remove="Migrations\20190424192926_deCero.Designer.cs" />
   </ItemGroup>
 
 
