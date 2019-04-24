@@ -9,19 +9,13 @@
 
 <hr />
 
-<script>
-    function doNavigate() {
-        numero = document.getElementById("prueba").value
-        alert(numero);
-    }
-</script>
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Venta.Producto" class="control-label"></label>
-                <select id="prueba" onchange="doNavigate()" asp-for="Venta.Producto" class="form-control">
+                <select asp-for="Venta.Producto" class="form-control">
                     @foreach (string item in LexiBalance.Pages.Ventas.CreateModel.productos)
                     {
                         <option value="@item">@item</option>
@@ -30,16 +24,8 @@
                 <span asp-validation-for="Venta.Producto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                @*<label asp-for="Venta.Cantidad" class="control-label"></label>
-                    <input type="number" asp-for="Venta.Cantidad" class="form-control" />
-                    <span asp-validation-for="Venta.Cantidad" class="text-danger"></span>*@
                 <label asp-for="Venta.Cantidad" class="control-label"></label>
-                <select asp-for="Venta.Cantidad" class="form-control">
-                    @for (int i = 1; i <= LexiBalance.Pages.Ventas.CreateModel.numProducto; i++)
-                    {
-                        <option value="@i">@i</option>
-                    }
-                </select>
+                <input type="number" asp-for="Venta.Cantidad" class="form-control" />
                 <span asp-validation-for="Venta.Cantidad" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -62,11 +48,6 @@
                 </select>
                 <span asp-validation-for="Venta.Trabajador" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                    <label asp-for="Venta.Fecha" class="control-label"></label>
-                    <input asp-for="Venta.Fecha" class="form-control" />
-                    <span asp-validation-for="Venta.Fecha" class="text-danger"></span>
-                </div>*@
             <div class="form-group">
                 <input type="submit" value="Insertar" class="btn btn-primary" />
             </div>
