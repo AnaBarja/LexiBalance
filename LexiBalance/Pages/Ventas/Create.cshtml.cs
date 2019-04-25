@@ -14,6 +14,7 @@ namespace LexiBalance.Pages.Ventas
         public static List<string> productos;
         public static List<string> trabajadores;
         public static List<string> clientes;
+        public static bool segundaVez;
 
         public CreateModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -25,6 +26,7 @@ namespace LexiBalance.Pages.Ventas
             productos = new List<string>();
             trabajadores = new List<string>();
             clientes = new List<string>();
+            segundaVez = false;
 
             using (var connection = _context.Database.GetDbConnection())
             {
@@ -109,13 +111,14 @@ namespace LexiBalance.Pages.Ventas
                     }
                 }
 
-                if (CANTIDAD < NUMERO)
+                if (CANTIDAD < NUMERO || NUMERO < 1)
                 {
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandText = "DELETE FROM Venta where ID = (select ID from Venta order by ID desc limit 1)";
                         var delete = command.ExecuteReader();
                     }
+                    segundaVez = true;
                     return Page();
                 }
                 else
