@@ -15,6 +15,7 @@ namespace LexiBalance.Pages.Ventas
         public static List<string> productos;
         public static List<string> trabajadores;
         public static List<string> clientes;
+        public static int cantidadInicial;
 
         public EditModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -38,6 +39,7 @@ namespace LexiBalance.Pages.Ventas
                 return NotFound();
             }
 
+            cantidadInicial = Venta.Cantidad;
             productos = new List<string>();
             trabajadores = new List<string>();
             clientes = new List<string>();
@@ -48,7 +50,7 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT ID, Nombre FROM Productos where cantidad > 0";
+                    command.CommandText = "SELECT ID, Nombre FROM Productos";
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -105,6 +107,49 @@ namespace LexiBalance.Pages.Ventas
                 else
                 {
                     throw;
+                }
+            }
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                connection.Open();
+                int nuevaCantidadVendida = 0;
+                int cantidadProducto = 0;
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Cantidad FROM Venta where ID=" + Venta.ID;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        nuevaCantidadVendida = reader.GetInt32(0);
+                    }
+                }
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "select cantidad from Productos where Nombre = (select substr(Producto, instr(Producto, ' ') " +
+                        "+ 1) from Venta where ID=" + Venta.ID + ")";
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        cantidadProducto = reader.GetInt32(0);
+                    }
+                }
+
+                int nuevacantidad = cantidadInicial + cantidadProducto - nuevaCantidadVendida;
+                if (cantidadProducto < nuevacantidad || nuevaCantidadVendida < 1 || nuevacantidad < 0)
+                {
+                    return Page();
+                }
+                else
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Productos SET Cantidad =" + nuevacantidad + " where ID = " +
+                            "(select id from Productos where Nombre =(select substr(Producto, instr(Producto, ' ') + 1) " +
+                            "from Venta where ID=" + Venta.ID + "))";
+                        var update = command.ExecuteReader();
+                    }
                 }
             }
 
