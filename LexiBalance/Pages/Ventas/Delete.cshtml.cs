@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using LexiBalance.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using LexiBalance.Models;
+using System.Threading.Tasks;
 
 namespace LexiBalance.Pages.Ventas
 {
     public class DeleteModel : PageModel
     {
         private readonly LexiBalance.Models.LexiBalanceContext _context;
+
+        public static int cantidadProductoDevolver;
+        public static string idProducto;
 
         public DeleteModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -34,6 +34,10 @@ namespace LexiBalance.Pages.Ventas
             {
                 return NotFound();
             }
+
+            cantidadProductoDevolver = Venta.Cantidad;
+            idProducto = Venta.Producto;
+
             return Page();
         }
 
@@ -50,6 +54,19 @@ namespace LexiBalance.Pages.Ventas
             {
                 _context.Venta.Remove(Venta);
                 await _context.SaveChangesAsync();
+            }
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE Productos SET Cantidad = (Cantidad + " + cantidadProductoDevolver + ") where Nombre " +
+                        "= substr('" + idProducto + "', instr('" + idProducto + "', ' ') + 1)";
+                    var añadirDeNuevo = command.ExecuteReader();
+
+                }
             }
 
             return RedirectToPage("./Index");
