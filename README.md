@@ -33,4 +33,5 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
 ###### Cuarta semana (22/04/2019 - /04/2019)
   Al añadir una venta y especificar la cantidad de producto, si la cantidad es mayor a la cantidad existente del producto no se sale de la página (la venta se guarda, se compara la cantidad del producto y la introducida, si es mayor la venta se borra). Al poner una cantidad menor se vuelve al índice.
   Mejora en los campos, poniendo número máximo de longitud y que sean obligatorios.
-
+  Al borrar una venta, la cantidad borrada vendida se suma a la cantidad del producto.
+  Al editar una venta se modifican las cantidades (en proceso).
