@@ -16,18 +16,19 @@
             <input type="hidden" asp-for="Venta.ID" />
             <div class="form-group">
                 <label asp-for="Venta.Producto" class="control-label"></label>
-                <select asp-for="Venta.Producto" class="form-control">
-                    @foreach (string item in LexiBalance.Pages.Ventas.EditModel.productos)
-                    {
-                        <option value="@item">@item</option>
-                    }
-                </select>
+                <input asp-for="Venta.Producto" class="form-control" readonly="readonly" />
                 <span asp-validation-for="Venta.Producto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Venta.Cantidad" class="control-label"></label>
                 <input type="number" asp-for="Venta.Cantidad" class="form-control" />
                 <span asp-validation-for="Venta.Cantidad" class="text-danger"></span>
+                @if (LexiBalance.Pages.Ventas.EditModel.segundaVez)
+                {
+                    <p style="color:#FF0000">
+                        Comprueba la cantidad. Valor no válido.
+                    </p>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="Venta.Cliente" class="control-label"></label>
@@ -51,7 +52,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Venta.Fecha" class="control-label"></label>
-                <input asp-for="Venta.Fecha" class="form-control" />
+                <input asp-for="Venta.Fecha" class="form-control" readonly="readonly" />
                 <span asp-validation-for="Venta.Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">

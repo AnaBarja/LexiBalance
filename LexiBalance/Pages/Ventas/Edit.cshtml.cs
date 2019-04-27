@@ -16,6 +16,9 @@ namespace LexiBalance.Pages.Ventas
         public static List<string> trabajadores;
         public static List<string> clientes;
         public static int cantidadInicial;
+        public static string trabajadorInicial;
+        public static string clienteInicial;
+        public static bool segundaVez;
 
         public EditModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -39,7 +42,11 @@ namespace LexiBalance.Pages.Ventas
                 return NotFound();
             }
 
+            segundaVez = false;
             cantidadInicial = Venta.Cantidad;
+            trabajadorInicial = Venta.Trabajador;
+            clienteInicial = Venta.Cliente;
+
             productos = new List<string>();
             trabajadores = new List<string>();
             clientes = new List<string>();
@@ -137,11 +144,7 @@ namespace LexiBalance.Pages.Ventas
                 }
 
                 int nuevacantidad = cantidadInicial + cantidadProducto - nuevaCantidadVendida;
-                if (cantidadProducto < nuevacantidad || nuevaCantidadVendida < 1 || nuevacantidad < 0)
-                {
-                    return Page();
-                }
-                else
+                if ((cantidadInicial + cantidadProducto) >= nuevaCantidadVendida && nuevaCantidadVendida > 0)
                 {
                     using (var command = connection.CreateCommand())
                     {
@@ -150,6 +153,22 @@ namespace LexiBalance.Pages.Ventas
                             "from Venta where ID=" + Venta.ID + "))";
                         var update = command.ExecuteReader();
                     }
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = " + Venta.ID;
+                        var fecha = command.ExecuteReader();
+                    }
+                }
+                else
+                {
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Venta SET Cantidad = " + cantidadInicial + ", Trabajador = '" +
+                            trabajadorInicial + "', Cliente = '" + clienteInicial + "' where ID=" + Venta.ID;
+                        var volverInicio = command.ExecuteReader();
+                    }
+                    segundaVez = true;
+                    return Page();
                 }
             }
 
