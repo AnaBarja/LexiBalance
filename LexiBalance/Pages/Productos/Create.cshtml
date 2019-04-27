@@ -16,17 +16,17 @@
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
                     <label asp-for="Productos.Nombre" class="control-label"></label>
-                    <input asp-for="Productos.Nombre" class="form-control" />
+                    <input maxlength="30" asp-for="Productos.Nombre" class="form-control" />
                     <span asp-validation-for="Productos.Nombre" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Productos.Precio" class="control-label"></label>
-                    <input type="number" asp-for="Productos.Precio" class="form-control" />
+                    <input type="number" maxlength="8" asp-for="Productos.Precio" class="form-control" />
                     <span asp-validation-for="Productos.Precio" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Productos.Cantidad" class="control-label"></label>
-                    <input type="number" asp-for="Productos.Cantidad" class="form-control" />
+                    <input type="number" maxlength="5" asp-for="Productos.Cantidad" class="form-control" />
                     <span asp-validation-for="Productos.Cantidad" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Productos.Caracteristicas" class="control-label"></label>
-                    <textarea asp-for="Productos.Caracteristicas" class="form-control"></textarea>
+                    <textarea maxlength="100" asp-for="Productos.Caracteristicas" class="form-control"></textarea>
                     <span asp-validation-for="Productos.Caracteristicas" class="text-danger"></span>
                 </div>
                 <div class="form-group">

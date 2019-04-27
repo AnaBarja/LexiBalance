@@ -11,9 +11,9 @@ namespace LexiBalance.Models
         public int ID { get; set; }
         [Required]
         public string Nombre { get; set; }
-        [Required, MaxLength(9)]
+        [Required]
         public string DNI { get; set; }
-        [Required, MaxLength(9)]
+        [Required]
         public int Telefono { get; set; }
         [Required]
         public string Direccion { get; set; }

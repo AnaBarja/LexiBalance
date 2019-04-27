@@ -7,9 +7,9 @@ namespace LexiBalance.Models
         public int ID { get; set; }
         [Required]
         public string Nombre { get; set; }
-        [Required, MaxLength(5)]
+        [Required]
         public int CP { get; set; }
-        [Required, MaxLength(9)]
+        [Required]
         public int Telefono { get; set; }
     }
 }
