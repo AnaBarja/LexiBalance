@@ -32,10 +32,10 @@
                 <div class="form-group">
                     <label asp-for="Productos.Color" class="control-label"></label>
                     <select asp-for="Productos.Color" class="form-control">
-                        <option value="Negro">Negro</option>
-                        <option value="Blanco">Blanco</option>
-                        <option value="Azul">Azul</option>
-                        <option value="Rojo">Rojo</option>
+                        @foreach (string item in LexiBalance.Pages.Productos.CreateModel.colores)
+                        {
+                            <option value="@item">@item</option>
+                        }
                     </select>
                     <span asp-validation-for="Productos.Color" class="text-danger"></span>
                 </div>

@@ -14,8 +14,11 @@ namespace LexiBalance.Pages.Productos
     {
         private readonly LexiBalance.Models.LexiBalanceContext _context;
 
+        public static string[] colores;
+
         public EditModel(LexiBalance.Models.LexiBalanceContext context)
         {
+            colores = Enum.GetNames(typeof(Producto.Colores));
             _context = context;
         }
 

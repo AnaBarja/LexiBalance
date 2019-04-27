@@ -10,7 +10,11 @@ namespace LexiBalance.Models
             Negro,
             Blanco,
             Azul,
-            Rojo
+            Rojo,
+            Amarillo,
+            Verde,
+            Lila,
+            Naranja
         }
 
         public int ID { get; set; }
