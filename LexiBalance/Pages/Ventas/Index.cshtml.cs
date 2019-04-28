@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using LexiBalance.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using LexiBalance.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LexiBalance.Pages.Ventas
 {
@@ -18,7 +15,7 @@ namespace LexiBalance.Pages.Ventas
             _context = context;
         }
 
-        public IList<Venta> Venta { get;set; }
+        public IList<Venta> Venta { get; set; }
 
         public async Task OnGetAsync()
         {

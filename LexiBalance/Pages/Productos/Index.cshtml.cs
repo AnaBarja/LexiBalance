@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using LexiBalance.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using LexiBalance.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LexiBalance.Pages.Productos
 {
@@ -18,7 +15,7 @@ namespace LexiBalance.Pages.Productos
             _context = context;
         }
 
-        public IList<Producto> Productos { get;set; }
+        public IList<Producto> Productos { get; set; }
 
         public async Task OnGetAsync()
         {
