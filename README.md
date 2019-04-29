@@ -39,3 +39,4 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
   Mini-limpieza de código.
 
 ###### Quinta semana (29/04/2019 - /05/2019)
+  Cambiar el diseño web.
