@@ -18,13 +18,14 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <div class="col-2">
-        <a class="navbar-brand" asp-area="" asp-page="/Index">LexiBalance</a>
-        @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>*@
-@*        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">*@
+    <div class="row container">
+        <div class="col-2 container">
+            <a class="navbar-brand" asp-area="" asp-page="/Index">LexiBalance</a>
+            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>*@
+            @*        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">*@
             <ul class="navbar-nav flex-grow-1">
                 @if (User.Identity.IsAuthenticated)
                 {
@@ -48,13 +49,14 @@
                     <partial name="_LoginPartial" />
                 </li>
             </ul>
-        @*</div>*@
-    </div>
-    <div class="col-10">
-        <partial name="_CookieConsentPartial" />
-        <main role="main">
-            @RenderBody()
-        </main>
+            @*</div>*@
+        </div>
+        <div class="col-9 container">
+            <partial name="_CookieConsentPartial" />
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
     <footer class="border-top footer text-muted">
