@@ -24,11 +24,6 @@
             <a asp-area="" asp-page="/Index">
                 <img src="~/img/barra.png" />
             </a>
-            @*<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>*@
-            @*        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">*@
             <ul class="navbar-nav flex-grow-1">
                 @if (User.Identity.IsAuthenticated)
                 {
@@ -51,8 +46,10 @@
                 <li class="nav-item">
                     <partial name="_LoginPartial" />
                 </li>
+                <li>
+                    <a asp-area="" asp-page="/Privacy"><br />Proyecto</a>
+                </li>
             </ul>
-            @*</div>*@
         </div>
         <div class="col-10 container-fluid">
             <br />
@@ -62,12 +59,6 @@
             </main>
         </div>
     </div>
-
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2019 - LexiBalance - <a asp-area="" asp-page="/Privacy">Proyecto</a>
-            </div>
-        </footer>*@
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
