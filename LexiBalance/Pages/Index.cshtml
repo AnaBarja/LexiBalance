@@ -4,16 +4,18 @@
     ViewData["Title"] = "Inicio";
 }
 <div>
-    <h1 class="display-4">Bienvenidx</h1>
-    <p>ERP en proceso</p>
-    <p><b>MEJOR TRABAJADOR:</b> @LexiBalance.Pages.IndexModel.mejorTrabajador</p>
-    <b>ÚLTIMAS VENTAS:</b>
+    <img src="~/img/logotipo.png" />
+    <br />
+    <img src="~/img/mejor.png" />
+    <p>@LexiBalance.Pages.IndexModel.mejorTrabajador</p>
+    <br />
+    <img src="~/img/ventas.png" />
     @for (int i = 0; i < LexiBalance.Pages.IndexModel.producto.Count; i++)
     {
         <p>
             @LexiBalance.Pages.IndexModel.producto[i]
             x
-            @LexiBalance.Pages.IndexModel.cantidadProducto[i]
+            @LexiBalance.Pages.IndexModel.cantidadProducto[i] unidad/es
         </p>
     }
 </div>
