@@ -40,3 +40,4 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
 
 ###### Quinta semana (29/04/2019 - /05/2019)
   Cambiar el diseño web. El menú ahora está en la izquierda, en vez de estar arriba; el contenido de las páginas se sitúa a su derecha.
+  Imagenes añadidas en el menú y en el index. Cambio de fuente.
