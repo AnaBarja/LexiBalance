@@ -10,7 +10,7 @@
 <p>
     <a asp-page="Create">Insertar cliente</a>
 </p>
-<table class="table">
+<table class="table" style="table-layout:fixed;">
     <thead>
         <tr>
             <th>
@@ -29,7 +29,7 @@
         @foreach (var item in Model.Cliente)
         {
             <tr>
-                <td>
+                <td style="word-wrap:break-word;">
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
