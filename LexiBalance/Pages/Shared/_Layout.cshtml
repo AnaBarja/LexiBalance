@@ -28,13 +28,13 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Productos/Index">Productos</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Ventas/Index">Ventas</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Clientes/Index">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Productos/Index">Productos</a>
                     </li>
                     @if (User.Identity.Name.Equals("Gerente"))
                     {
@@ -47,7 +47,7 @@
                     <partial name="_LoginPartial" />
                 </li>
                 <li>
-                    <a asp-area="" asp-page="/Privacy"><br />Proyecto</a>
+                    <a asp-area="" asp-page="/Proyecto"><br />Proyecto</a>
                 </li>
             </ul>
         </div>
