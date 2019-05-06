@@ -38,6 +38,8 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
   Mejora de los colores de los productos. Hay más colores; en crear y editar se seleccionan del ENUM de Producto, no se ponen a mano.
   Mini-limpieza de código.
 
-###### Quinta semana (29/04/2019 - /05/2019)
+###### Quinta semana (29/04/2019 - 05/05/2019)
   Cambiar el diseño web. El menú ahora está en la izquierda, en vez de estar arriba; el contenido de las páginas se sitúa a su derecha.
-  Imagenes añadidas en el menú y en el index. Cambio de fuente.
+  Imágenes añadidas en el menú y en el index. Cambio de fuente. Si el texto es muy largo la tabla crece a lo alto, no a lo ancho. Imágenes para el título de cada página.
+  
+###### Sexta semana (06/05/2019 - /05/2019)
