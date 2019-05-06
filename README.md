@@ -43,3 +43,5 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
   Imágenes añadidas en el menú y en el index. Cambio de fuente. Si el texto es muy largo la tabla crece a lo alto, no a lo ancho. Imágenes para el título de cada página.
   
 ###### Sexta semana (06/05/2019 - /05/2019)
+  Cambios en el diseño del menú. 
+  Al insertar o editar un cliente se comprueba que no se repita el número de télefono. Añadida una barra de búsqueda para el nombre de los productos.
