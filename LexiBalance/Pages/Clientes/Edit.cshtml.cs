@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,11 @@ namespace LexiBalance.Pages.Clientes
     public class EditModel : PageModel
     {
         private readonly LexiBalance.Models.LexiBalanceContext _context;
+        public static List<int> numeroTelefonos;
+        public static bool clienteExiste;
+        public static string nombreInicial;
+        public static int CPInicial;
+        public static int telfInicial;
 
         public EditModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -32,6 +38,33 @@ namespace LexiBalance.Pages.Clientes
             {
                 return NotFound();
             }
+
+            numeroTelefonos = new List<int>();
+            clienteExiste = false;
+            nombreInicial = Cliente.Nombre;
+            CPInicial = Cliente.CP;
+            telfInicial = Cliente.Telefono;
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Telefono FROM Cliente";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (!reader.IsDBNull(0))
+                            {
+                                numeroTelefonos.Add(reader.GetInt32(0));
+                            }
+                        }
+                    }
+                }
+            }
+
             return Page();
         }
 
@@ -57,6 +90,36 @@ namespace LexiBalance.Pages.Clientes
                 else
                 {
                     throw;
+                }
+            }
+            clienteExiste = false;
+            numeroTelefonos.Remove(telfInicial);
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                int numTelefono = 0;
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT Telefono FROM Cliente order by ID desc limit 1";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        numTelefono = reader.GetInt32(0);
+                    }
+                }
+
+                if (numeroTelefonos.Contains(numTelefono))
+                {
+                    clienteExiste = true;
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Cliente SET Nombre = '" + nombreInicial + "', CP = " +
+                           CPInicial + ", Telefono = " + telfInicial + " where ID=" + Cliente.ID;
+                        var volverInicio = command.ExecuteReader();
+                    }
+                    return Page();
                 }
             }
 

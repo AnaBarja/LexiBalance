@@ -13,6 +13,12 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (LexiBalance.Pages.Clientes.CreateModel.clienteExiste)
+            {
+                <p style="color:#FF0000">
+                    El cliente ya existe.
+                </p>
+            }
             <div class="form-group">
                 <label asp-for="Cliente.Nombre" class="control-label"></label>
                 <input asp-for="Cliente.Nombre" class="form-control" />
