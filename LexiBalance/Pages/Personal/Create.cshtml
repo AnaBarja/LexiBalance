@@ -27,12 +27,12 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Trabajador.DNI" class="control-label"></label>
-                    <input maxlength="9" asp-for="Trabajador.DNI" class="form-control" />
+                    <input maxlength="9" minlength="9" asp-for="Trabajador.DNI" class="form-control" />
                     <span asp-validation-for="Trabajador.DNI" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Trabajador.Telefono" class="control-label"></label>
-                    <input maxlength="9" type="number" asp-for="Trabajador.Telefono" class="form-control" />
+                    <input maxlength="9" minlength="9" type="number" asp-for="Trabajador.Telefono" class="form-control" />
                     <span asp-validation-for="Trabajador.Telefono" class="text-danger"></span>
                 </div>
                 <div class="form-group">
