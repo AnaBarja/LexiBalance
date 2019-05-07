@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +11,12 @@ namespace LexiBalance.Pages.Personal
     public class EditModel : PageModel
     {
         private readonly LexiBalance.Models.LexiBalanceContext _context;
+        public static List<string> DNIs;
+        public static bool trabajadorExiste;
+        public static string nombreInicial;
+        public static string dniInicial;
+        public static int telfInicial;
+        public static string direccionInicial;
 
         public EditModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -32,6 +39,34 @@ namespace LexiBalance.Pages.Personal
             {
                 return NotFound();
             }
+
+            DNIs = new List<string>();
+            trabajadorExiste = false;
+            nombreInicial = Trabajador.Nombre;
+            dniInicial = Trabajador.DNI;
+            telfInicial = Trabajador.Telefono;
+            direccionInicial = Trabajador.Direccion;
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT DNI FROM Trabajador";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (!reader.IsDBNull(0))
+                            {
+                                DNIs.Add(reader.GetString(0));
+                            }
+                        }
+                    }
+                }
+            }
+
             return Page();
         }
 
@@ -57,6 +92,37 @@ namespace LexiBalance.Pages.Personal
                 else
                 {
                     throw;
+                }
+            }
+
+            trabajadorExiste = false;
+            DNIs.Remove(dniInicial);
+
+            using (var connection = _context.Database.GetDbConnection())
+            {
+                string numDNI = "";
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT DNI FROM Trabajador WHERE ID= " + Trabajador.ID;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        numDNI = reader.GetString(0);
+                    }
+                }
+
+                if (DNIs.Contains(numDNI))
+                {
+                    trabajadorExiste = true;
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = "UPDATE Trabajador SET Nombre = '" + nombreInicial + "', DNI = '" +
+                           dniInicial + "', Telefono = " + telfInicial + ", Direccion = '" + direccionInicial + "' where ID=" + Trabajador.ID;
+                        var volverInicio = command.ExecuteReader();
+                    }
+                    return Page();
                 }
             }
 
