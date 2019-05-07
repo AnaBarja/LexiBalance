@@ -102,7 +102,7 @@ namespace LexiBalance.Pages.Clientes
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT Telefono FROM Cliente order by ID desc limit 1";
+                    command.CommandText = "SELECT Telefono FROM Cliente WHERE ID=" + Cliente.ID;
                     using (var reader = command.ExecuteReader())
                     {
                         numTelefono = reader.GetInt32(0);
