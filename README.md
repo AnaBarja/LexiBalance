@@ -44,4 +44,4 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
   
 ###### Sexta semana (06/05/2019 - /05/2019)
   Cambios en el diseño del menú. 
-  Al insertar o editar un cliente se comprueba que no se repita el número de télefono. Añadida una barra de búsqueda para el nombre de los productos.
+  Al insertar o editar un cliente se comprueba que no se repita el número de télefono. Añadida una barra de búsqueda para el nombre de los productos. Añadida barra de búsqueda para clientes por número de teléfono y para personal por DNI. Al insertar o editar un trabajaor se comprueba que no se repita el DNI. En los inputs de CP, teléfono y DNi tienen que ser 5 y 9 caracteres exactos.
