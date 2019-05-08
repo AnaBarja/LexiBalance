@@ -15,6 +15,7 @@ namespace LexiBalance.Pages.Ventas
         public static List<string> trabajadores;
         public static List<string> clientes;
         public static bool segundaVez;
+        public static bool productoBorrado;
 
         public CreateModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -27,6 +28,7 @@ namespace LexiBalance.Pages.Ventas
             trabajadores = new List<string>();
             clientes = new List<string>();
             segundaVez = false;
+            productoBorrado = false;
 
             using (var connection = _context.Database.GetDbConnection())
             {
@@ -41,7 +43,7 @@ namespace LexiBalance.Pages.Ventas
                         {
                             if (!reader.IsDBNull(1) && !reader.IsDBNull(0) && !reader.IsDBNull(2))
                             {
-                                productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1) +" ("+reader.GetInt16(2)+ " uds.)");
+                                productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1) + " (" + reader.GetInt16(2) + " uds.)");
                             }
                         }
                     }
@@ -78,6 +80,7 @@ namespace LexiBalance.Pages.Ventas
         {
             int NUMERO = 0;
             int CANTIDAD = 0;
+            bool siguiente = false;
 
             if (!ModelState.IsValid)
             {
@@ -98,7 +101,8 @@ namespace LexiBalance.Pages.Ventas
                     command.CommandText = "SELECT Cantidad FROM Venta order by ID desc limit 1";
                     using (var reader = command.ExecuteReader())
                     {
-                        NUMERO = reader.GetInt32(0);
+                        if (reader.Read() && !reader.IsDBNull(0))
+                            NUMERO = reader.GetInt32(0);
                     }
                 }
 
@@ -109,36 +113,53 @@ namespace LexiBalance.Pages.Ventas
 
                     using (var reader = command.ExecuteReader())
                     {
-                        CANTIDAD = reader.GetInt32(0);
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            CANTIDAD = reader.GetInt32(0);
+                            siguiente = true;
+                        }
                     }
                 }
 
-                if (CANTIDAD < NUMERO || NUMERO < 1)
+                if (siguiente)
+                {
+                    if (CANTIDAD < NUMERO || NUMERO < 1)
+                    {
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = "DELETE FROM Venta where ID = (select ID from Venta order by ID desc limit 1)";
+                            var delete = command.ExecuteReader();
+                        }
+                        segundaVez = true;
+                        return Page();
+                    }
+                    else
+                    {
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = "UPDATE Productos SET Cantidad = Cantidad -" + NUMERO + " where ID = " +
+                                "(select id from Productos where ID = (select SUBSTR(Producto, " +
+                            "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta order by ID desc limit 1))";
+                            var update = command.ExecuteReader();
+                        }
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = "UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = " +
+                        "(select ID from Venta order by ID desc limit 1)";
+                            var fecha = command.ExecuteReader();
+
+                        }
+                    }
+                }
+                else
                 {
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandText = "DELETE FROM Venta where ID = (select ID from Venta order by ID desc limit 1)";
                         var delete = command.ExecuteReader();
                     }
-                    segundaVez = true;
+                    productoBorrado = true;
                     return Page();
-                }
-                else
-                {
-                    using (var command = connection.CreateCommand())
-                    {
-                        command.CommandText = "UPDATE Productos SET Cantidad = Cantidad -" + NUMERO + " where ID = " +
-                            "(select id from Productos where ID = (select SUBSTR(Producto, " +
-                        "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta order by ID desc limit 1))";
-                        var update = command.ExecuteReader();
-                    }
-                    using (var command = connection.CreateCommand())
-                    {
-                        command.CommandText = "UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = " +
-                    "(select ID from Venta order by ID desc limit 1)";
-                        var fecha = command.ExecuteReader();
-
-                    }
                 }
             }
             return RedirectToPage("./Index");

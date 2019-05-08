@@ -19,6 +19,7 @@ namespace LexiBalance.Pages.Ventas
         public static string trabajadorInicial;
         public static string clienteInicial;
         public static bool segundaVez;
+        public static bool productoBorrado;
 
         public EditModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -43,6 +44,7 @@ namespace LexiBalance.Pages.Ventas
             }
 
             segundaVez = false;
+            productoBorrado = false;
             cantidadInicial = Venta.Cantidad;
             trabajadorInicial = Venta.Trabajador;
             clienteInicial = Venta.Cliente;
@@ -85,6 +87,7 @@ namespace LexiBalance.Pages.Ventas
 
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -108,6 +111,8 @@ namespace LexiBalance.Pages.Ventas
                 }
             }
 
+            bool siguiente = false;
+
             using (var connection = _context.Database.GetDbConnection())
             {
                 connection.Open();
@@ -119,7 +124,8 @@ namespace LexiBalance.Pages.Ventas
                     command.CommandText = "SELECT Cantidad FROM Venta where ID=" + Venta.ID;
                     using (var reader = command.ExecuteReader())
                     {
-                        nuevaCantidadVendida = reader.GetInt32(0);
+                        if (reader.Read() && !reader.IsDBNull(0))
+                            nuevaCantidadVendida = reader.GetInt32(0);
                     }
                 }
 
@@ -130,24 +136,42 @@ namespace LexiBalance.Pages.Ventas
 
                     using (var reader = command.ExecuteReader())
                     {
-                        cantidadProducto = reader.GetInt32(0);
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            cantidadProducto = reader.GetInt32(0);
+                            siguiente = true;
+                        }
                     }
                 }
 
-                int nuevacantidad = cantidadInicial + cantidadProducto - nuevaCantidadVendida;
-                if ((cantidadInicial + cantidadProducto) >= nuevaCantidadVendida && nuevaCantidadVendida > 0)
+                if (siguiente)
                 {
-                    using (var command = connection.CreateCommand())
+                    int nuevacantidad = cantidadInicial + cantidadProducto - nuevaCantidadVendida;
+                    if ((cantidadInicial + cantidadProducto) >= nuevaCantidadVendida && nuevaCantidadVendida > 0)
                     {
-                        command.CommandText = "UPDATE Productos SET Cantidad =" + nuevacantidad + " where ID = " +
-                            "(select id from Productos where ID = (select SUBSTR(Producto, " +
-                        "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta where ID=" + Venta.ID + "))";
-                        var update = command.ExecuteReader();
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = "UPDATE Productos SET Cantidad =" + nuevacantidad + " where ID = " +
+                                "(select id from Productos where ID = (select SUBSTR(Producto, " +
+                            "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta where ID=" + Venta.ID + "))";
+                            var update = command.ExecuteReader();
+                        }
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = "UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = " + Venta.ID;
+                            var fecha = command.ExecuteReader();
+                        }
                     }
-                    using (var command = connection.CreateCommand())
+                    else
                     {
-                        command.CommandText = "UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = " + Venta.ID;
-                        var fecha = command.ExecuteReader();
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = "UPDATE Venta SET Cantidad = " + cantidadInicial + ", Trabajador = '" +
+                                trabajadorInicial + "', Cliente = '" + clienteInicial + "' where ID=" + Venta.ID;
+                            var volverInicio = command.ExecuteReader();
+                        }
+                        segundaVez = true;
+                        return Page();
                     }
                 }
                 else
@@ -158,11 +182,10 @@ namespace LexiBalance.Pages.Ventas
                             trabajadorInicial + "', Cliente = '" + clienteInicial + "' where ID=" + Venta.ID;
                         var volverInicio = command.ExecuteReader();
                     }
-                    segundaVez = true;
+                    productoBorrado = true;
                     return Page();
                 }
             }
-
             return RedirectToPage("./Index");
         }
 

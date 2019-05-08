@@ -22,6 +22,12 @@
                     }
                 </select>
                 <span asp-validation-for="Venta.Producto" class="text-danger"></span>
+                @if (LexiBalance.Pages.Ventas.CreateModel.productoBorrado)
+                {
+                    <p style="color:#FF0000">
+                        El producto insertado ha sido borrado.
+                    </p>
+                }
             </div>
             <div class="form-group">
                 <label asp-for="Venta.Cantidad" class="control-label"></label>
