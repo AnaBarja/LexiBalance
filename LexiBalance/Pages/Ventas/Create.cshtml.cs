@@ -34,14 +34,14 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT ID, Nombre FROM Productos where cantidad > 0";
+                    command.CommandText = "SELECT ID, Nombre, Cantidad FROM Productos where cantidad > 0";
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            if (!reader.IsDBNull(1) && !reader.IsDBNull(0))
+                            if (!reader.IsDBNull(1) && !reader.IsDBNull(0) && !reader.IsDBNull(2))
                             {
-                                productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
+                                productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1) +" ("+reader.GetInt16(2)+ " uds.)");
                             }
                         }
                     }
@@ -83,6 +83,8 @@ namespace LexiBalance.Pages.Ventas
             {
                 return Page();
             }
+
+            Venta.Producto = Venta.Producto.Substring(0, Venta.Producto.LastIndexOf("("));
 
             _context.Venta.Add(Venta);
             await _context.SaveChangesAsync();

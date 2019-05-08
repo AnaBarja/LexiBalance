@@ -57,15 +57,6 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT ID, Nombre FROM Productos";
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            if (!reader.IsDBNull(1) && !reader.IsDBNull(0))
-                                productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
-                        }
-                    }
 
                     command.CommandText = "SELECT ID, Nombre FROM Trabajador";
                     using (var reader = command.ExecuteReader())
