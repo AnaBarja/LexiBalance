@@ -11,7 +11,7 @@ namespace LexiBalance.Pages.Ventas
         private readonly LexiBalance.Models.LexiBalanceContext _context;
 
         public static int cantidadProductoDevolver;
-        public static string idProducto;
+        public static string nombreProduc;
 
         public DeleteModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -36,7 +36,7 @@ namespace LexiBalance.Pages.Ventas
             }
 
             cantidadProductoDevolver = Venta.Cantidad;
-            idProducto = Venta.Producto;
+            nombreProduc = Venta.Producto;
 
             return Page();
         }
@@ -62,10 +62,9 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "UPDATE Productos SET Cantidad = (Cantidad + " + cantidadProductoDevolver + ") where Nombre " +
-                        "= substr('" + idProducto + "', instr('" + idProducto + "', ' ') + 1)";
+                    command.CommandText = "UPDATE Productos SET CANTIDAD = (Cantidad + " + cantidadProductoDevolver + ") where ID = " +
+                        "(select SUBSTR('" + nombreProduc + "',INSTR('" + nombreProduc + "','#')+1,INSTR('" + nombreProduc + "','.')-2))";
                     var añadirDeNuevo = command.ExecuteReader();
-
                 }
             }
 

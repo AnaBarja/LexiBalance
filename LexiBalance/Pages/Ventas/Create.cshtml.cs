@@ -102,8 +102,8 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "select cantidad from Productos where Nombre = (select substr(Producto, instr(Producto, ' ') " +
-                        "+ 1) from Venta order by ID desc limit 1)";
+                    command.CommandText = "select cantidad from Productos where ID = (select SUBSTR(Producto, " +
+                        "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta order by ID desc limit 1)";
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -126,8 +126,8 @@ namespace LexiBalance.Pages.Ventas
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandText = "UPDATE Productos SET Cantidad = Cantidad -" + NUMERO + " where ID = " +
-                            "(select id from Productos where Nombre =(select substr(Producto, instr(Producto, ' ') + 1) " +
-                            "from Venta order by ID desc limit 1))";
+                            "(select id from Productos where ID = (select SUBSTR(Producto, " +
+                        "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta order by ID desc limit 1))";
                         var update = command.ExecuteReader();
                     }
                     using (var command = connection.CreateCommand())

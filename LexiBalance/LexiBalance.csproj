@@ -6,7 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Controllers\DefaultController.cs" />
+    <Compile Remove="Controllers\**" />
+    <Content Remove="Controllers\**" />
+    <EmbeddedResource Remove="Controllers\**" />
+    <None Remove="Controllers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Data\SQLiteContext.cs" />
     <Compile Remove="Migrations\20190401150912_Initial.cs" />
     <Compile Remove="Migrations\20190401150912_Initial.Designer.cs" />
