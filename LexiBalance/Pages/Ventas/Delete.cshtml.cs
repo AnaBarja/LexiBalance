@@ -63,12 +63,12 @@ namespace LexiBalance.Pages.Ventas
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText = string.Format("UPDATE Productos SET CANTIDAD = (Cantidad + {0}) where ID = " +
-                        "(select SUBSTR('{1}',INSTR('{2}','#')+1,INSTR('{3}','.')-2))", cantidadProductoDevolver, 
-                        nombreProduc, nombreProduc, nombreProduc);
+                        "(select SUBSTR('{1}',INSTR('{1}','#')+1,INSTR('{1}','.')-2)) and Nombre = " +
+                        "(select SUBSTR('{1}', INSTR('{1}', ' ')+1))",
+                        cantidadProductoDevolver, nombreProduc);
                     var añadirDeNuevo = command.ExecuteReader();
                 }
             }
-
             return RedirectToPage("./Index");
         }
     }
