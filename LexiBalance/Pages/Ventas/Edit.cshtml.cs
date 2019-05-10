@@ -121,7 +121,7 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT Cantidad FROM Venta where ID=" + Venta.ID;
+                    command.CommandText = string.Format("SELECT Cantidad FROM Venta where ID = {0}", Venta.ID);
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read() && !reader.IsDBNull(0))
@@ -131,8 +131,8 @@ namespace LexiBalance.Pages.Ventas
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "select cantidad from Productos where ID = (select SUBSTR(Producto, " +
-                        "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta where ID=" + Venta.ID + ")";
+                    command.CommandText = string.Format("select cantidad from Productos where ID = (select SUBSTR(Producto, " +
+                        "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta where ID = {0})", Venta.ID);
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -151,14 +151,14 @@ namespace LexiBalance.Pages.Ventas
                     {
                         using (var command = connection.CreateCommand())
                         {
-                            command.CommandText = "UPDATE Productos SET Cantidad =" + nuevacantidad + " where ID = " +
+                            command.CommandText = string.Format("UPDATE Productos SET Cantidad = {0} where ID = " +
                                 "(select id from Productos where ID = (select SUBSTR(Producto, " +
-                            "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta where ID=" + Venta.ID + "))";
+                            "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta where ID = {1}))", nuevacantidad, Venta.ID);
                             var update = command.ExecuteReader();
                         }
                         using (var command = connection.CreateCommand())
                         {
-                            command.CommandText = "UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = " + Venta.ID;
+                            command.CommandText = string.Format("UPDATE Venta SET Fecha = DATETIME('now', 'localtime') WHERE ID = {0}", Venta.ID);
                             var fecha = command.ExecuteReader();
                         }
                     }
@@ -166,8 +166,8 @@ namespace LexiBalance.Pages.Ventas
                     {
                         using (var command = connection.CreateCommand())
                         {
-                            command.CommandText = "UPDATE Venta SET Cantidad = " + cantidadInicial + ", Trabajador = '" +
-                                trabajadorInicial + "', Cliente = '" + clienteInicial + "' where ID=" + Venta.ID;
+                            command.CommandText = string.Format("UPDATE Venta SET Cantidad = {0}, Trabajador = '{1}', " +
+                                "Cliente = '{2}' where ID = {3}", cantidadInicial, trabajadorInicial, clienteInicial, Venta.ID);
                             var volverInicio = command.ExecuteReader();
                         }
                         segundaVez = true;
@@ -178,8 +178,8 @@ namespace LexiBalance.Pages.Ventas
                 {
                     using (var command = connection.CreateCommand())
                     {
-                        command.CommandText = "UPDATE Venta SET Cantidad = " + cantidadInicial + ", Trabajador = '" +
-                            trabajadorInicial + "', Cliente = '" + clienteInicial + "' where ID=" + Venta.ID;
+                        command.CommandText = string.Format("UPDATE Venta SET Cantidad = {0}, Trabajador = '{1}', " +
+                                "Cliente = '{2}' where ID = {3}", cantidadInicial, trabajadorInicial, clienteInicial, Venta.ID);
                         var volverInicio = command.ExecuteReader();
                     }
                     productoBorrado = true;

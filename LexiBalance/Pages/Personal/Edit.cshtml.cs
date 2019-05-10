@@ -105,7 +105,7 @@ namespace LexiBalance.Pages.Personal
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT DNI FROM Trabajador WHERE ID= " + Trabajador.ID;
+                    command.CommandText = string.Format("SELECT DNI FROM Trabajador WHERE ID = {0}", Trabajador.ID);
                     using (var reader = command.ExecuteReader())
                     {
                         numDNI = reader.GetString(0);
@@ -118,8 +118,8 @@ namespace LexiBalance.Pages.Personal
 
                     using (var command = connection.CreateCommand())
                     {
-                        command.CommandText = "UPDATE Trabajador SET Nombre = '" + nombreInicial + "', DNI = '" +
-                           dniInicial + "', Telefono = " + telfInicial + ", Direccion = '" + direccionInicial + "' where ID=" + Trabajador.ID;
+                        command.CommandText = string.Format("UPDATE Trabajador SET Nombre = '{0}', DNI = '{1}', Telefono = {2}, " +
+                            "Direccion = '{3}' where ID = {4}", nombreInicial, dniInicial, telfInicial, direccionInicial, Trabajador.ID);
                         var volverInicio = command.ExecuteReader();
                     }
                     return Page();

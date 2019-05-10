@@ -137,9 +137,9 @@ namespace LexiBalance.Pages.Ventas
                     {
                         using (var command = connection.CreateCommand())
                         {
-                            command.CommandText = "UPDATE Productos SET Cantidad = Cantidad -" + NUMERO + " where ID = " +
+                            command.CommandText = string.Format("UPDATE Productos SET Cantidad = Cantidad - {0} where ID = " +
                                 "(select id from Productos where ID = (select SUBSTR(Producto, " +
-                            "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta order by ID desc limit 1))";
+                            "INSTR(Producto,'#')+1,INSTR(Producto,'.')-2) from Venta order by ID desc limit 1))", NUMERO);
                             var update = command.ExecuteReader();
                         }
                         using (var command = connection.CreateCommand())

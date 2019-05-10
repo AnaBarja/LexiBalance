@@ -102,7 +102,7 @@ namespace LexiBalance.Pages.Clientes
 
                 using (var command = connection.CreateCommand())
                 {
-                    command.CommandText = "SELECT Telefono FROM Cliente WHERE ID=" + Cliente.ID;
+                    command.CommandText = string.Format("SELECT Telefono FROM Cliente WHERE ID = {0}", Cliente.ID);
                     using (var reader = command.ExecuteReader())
                     {
                         numTelefono = reader.GetInt32(0);
@@ -115,8 +115,8 @@ namespace LexiBalance.Pages.Clientes
 
                     using (var command = connection.CreateCommand())
                     {
-                        command.CommandText = "UPDATE Cliente SET Nombre = '" + nombreInicial + "', CP = " +
-                           CPInicial + ", Telefono = " + telfInicial + " where ID=" + Cliente.ID;
+                        command.CommandText = string.Format("UPDATE Cliente SET Nombre = '{0}', CP = {1}, Telefono = {2} where ID = {3}", 
+                            nombreInicial, CPInicial, telfInicial, Cliente.ID);
                         var volverInicio = command.ExecuteReader();
                     }
                     return Page();
