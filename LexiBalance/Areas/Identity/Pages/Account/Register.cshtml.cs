@@ -68,7 +68,7 @@ namespace LexiBalance.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 string nombreUsuario = Input.Email.Substring(0, Input.Email.IndexOf('@'));
-                var user = new LexiBalanceUser { UserName = nombreUsuario, Email = Input.Email };
+                var user = new LexiBalanceUser { UserName = "@"+nombreUsuario, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
