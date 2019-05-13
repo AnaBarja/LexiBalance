@@ -5,10 +5,10 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
 - [x] Creación de la web
 - [x] Creacion de los MVC
 - [x] Creación de la base de datos
-- [x] Implementación de la base de datos (posibles cambios para mejora del sistema en la fase de testeo)
-- [x] Opciones de añadir, editar y borrar en la base de datos (posibles cambios para mejora del sistema en la fase de testeo)
-- [x] Creación de usuario gerente y trabajador (posibles cambios para mejora del sistema en la fase de testeo)
-- [ ] Rediseño web
+- [x] Implementación de la base de datos 
+- [x] Opciones de añadir, editar y borrar en la base de datos 
+- [x] Creación de usuario gerente y trabajador 
+- [x] Rediseño web
 - [ ] Testear
 - [ ] Entrega con el informe final y vídeo explicativo
 
@@ -42,10 +42,13 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
   Cambiar el diseño web. El menú ahora está en la izquierda, en vez de estar arriba; el contenido de las páginas se sitúa a su derecha.
   Imágenes añadidas en el menú y en el index. Cambio de fuente. Si el texto es muy largo la tabla crece a lo alto, no a lo ancho. Imágenes para el título de cada página.
   
-###### Sexta semana (06/05/2019 - /05/2019)
+###### Sexta semana (06/05/2019 - 12/05/2019)
   Cambios en el diseño del menú. 
-  Al insertar o editar un cliente se comprueba que no se repita el número de télefono. Añadida una barra de búsqueda para el nombre de los productos. Añadida barra de búsqueda para clientes por número de teléfono y para personal por DNI. Al insertar o editar un trabajador se comprueba que no se repita el DNI. En los inputs de CP, teléfono y DNI tienen que ser 5 y 9 caracteres exactos. Al insertar una venta se muestra el número de unidades disponibles de cada producto en el select. Arreglada la gestión de la BD respecto a ventas, las cantidades se gestionan con el ID del producto, no con el nombre (así se pueden repetir nombres). Al insertar o editar una venta si el producto es borrado durante este proceso no se inserta y se avisa del error.
+  Al insertar o editar un cliente se comprueba que no se repita el número de télefono. Añadida una barra de búsqueda para el nombre de los productos. Añadida barra de búsqueda para clientes por número de teléfono y para personal por DNI. Al insertar o editar un trabajador se comprueba que no se repita el DNI. En los inputs de CP y DNI tienen que ser 5 y 9 caracteres exactos. Al insertar una venta se muestra el número de unidades disponibles de cada producto en el select. Arreglada la gestión de la BD respecto a ventas, las cantidades se gestionan con el ID del producto, no con el nombre (así se pueden repetir nombres). Al insertar o editar una venta si el producto es borrado durante este proceso no se inserta y se avisa del error. El número de télefono tiene que ser mínimo de 9 pero no tiene límite. Uso de string.Format() en las sentencias SQLite para mejor compresión. Al borrar una venta se suma la cantidad vendida al producto si tiene el mismo nombre y el mismo ID, por lo que no se permite editar el nombre del producto. La página es accesible a través de www.lexibalance.ddns.net cuando está abierto el servidor. Preparando el informe final.
   
-  ###### Realizando en esta semana
-  Ser accesible a través de internet.
-  
+###### Séptima semana (13/05/2019 - /05/2019)
+- [ ] Revisar código
+- [ ] Comprobación de la base de datos
+- [ ] Correcto funcionamiento desde internet
+- [ ] Grabación y edición del gameplay
+- [ ] Entrega del informe final
