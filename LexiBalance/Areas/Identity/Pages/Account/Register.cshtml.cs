@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
+﻿using LexiBalance.Areas.Identity.Data;
 using Microsoft.AspNetCore.Authorization;
-using LexiBalance.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace LexiBalance.Areas.Identity.Pages.Account
 {
@@ -68,7 +66,11 @@ namespace LexiBalance.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 string nombreUsuario = Input.Email.Substring(0, Input.Email.IndexOf('@'));
-                var user = new LexiBalanceUser { UserName = "@"+nombreUsuario, Email = Input.Email };
+                if (nombreUsuario.Length >= 20)
+                {
+                    nombreUsuario = nombreUsuario.Substring(0, 19);
+                }
+                var user = new LexiBalanceUser { UserName = "@" + nombreUsuario, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
