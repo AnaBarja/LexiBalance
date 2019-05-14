@@ -21,12 +21,12 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Productos.Precio" class="control-label"></label>
-                    <input type="number" maxlength="8" asp-for="Productos.Precio" class="form-control" />
+                    <input type="number" maxlength="8" min="0.01" asp-for="Productos.Precio" class="form-control" />
                     <span asp-validation-for="Productos.Precio" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Productos.Cantidad" class="control-label"></label>
-                    <input type="number" maxlength="5" asp-for="Productos.Cantidad" class="form-control" />
+                    <input type="number" maxlength="5" min="0" asp-for="Productos.Cantidad" class="form-control" />
                     <span asp-validation-for="Productos.Cantidad" class="text-danger"></span>
                 </div>
                 <div class="form-group">
