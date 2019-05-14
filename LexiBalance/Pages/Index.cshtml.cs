@@ -22,6 +22,7 @@ namespace LexiBalance.Pages
         {
             producto = new List<string>();
             cantidadProducto = new List<int>();
+            mejorTrabajador = "";
 
             using (var connection = _context.Database.GetDbConnection())
             {
