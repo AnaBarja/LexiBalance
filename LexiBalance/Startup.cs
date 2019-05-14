@@ -26,13 +26,13 @@ namespace LexiBalance
             });
 
             services.AddMvc().AddRazorPagesOptions(options =>
-{
-    options.Conventions.AuthorizeFolder("/Personal");
-    options.Conventions.AuthorizeFolder("/Productos");
-    options.Conventions.AuthorizeFolder("/Ventas");
-    options.Conventions.AuthorizeFolder("/Clientes");
-    options.Conventions.AllowAnonymousToPage("/Index");
-}).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            {
+                options.Conventions.AuthorizeFolder("/Personal");
+                options.Conventions.AuthorizeFolder("/Productos");
+                options.Conventions.AuthorizeFolder("/Ventas");
+                options.Conventions.AuthorizeFolder("/Clientes");
+                options.Conventions.AllowAnonymousToPage("/Index");
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddEntityFrameworkSqlite().AddDbContext<LexiBalanceContext>();
         }

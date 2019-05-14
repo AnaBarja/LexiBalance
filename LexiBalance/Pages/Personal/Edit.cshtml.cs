@@ -108,7 +108,10 @@ namespace LexiBalance.Pages.Personal
                     command.CommandText = string.Format("SELECT DNI FROM Trabajador WHERE ID = {0}", Trabajador.ID);
                     using (var reader = command.ExecuteReader())
                     {
-                        numDNI = reader.GetString(0);
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            numDNI = reader.GetString(0);
+                        }
                     }
                 }
 

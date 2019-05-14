@@ -70,7 +70,10 @@ namespace LexiBalance.Pages.Clientes
                     command.CommandText = "SELECT Telefono FROM Cliente order by ID desc limit 1";
                     using (var reader = command.ExecuteReader())
                     {
-                        numTelefono = reader.GetInt32(0);
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            numTelefono = reader.GetInt32(0);
+                        }
                     }
                 }
 

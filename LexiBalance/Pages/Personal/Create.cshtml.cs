@@ -70,7 +70,10 @@ namespace LexiBalance.Pages.Personal
                     command.CommandText = "SELECT DNI FROM Trabajador order by ID desc limit 1";
                     using (var reader = command.ExecuteReader())
                     {
-                        numeroDNI = reader.GetString(0);
+                        if (reader.Read() && !reader.IsDBNull(0))
+                        {
+                            numeroDNI = reader.GetString(0);
+                        }
                     }
                 }
 
