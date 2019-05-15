@@ -6,7 +6,7 @@ namespace LexiBalance.Models
     {
         public int ID { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z/ ]+$")]
+        [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Usa sólo letras.")]
         public string Nombre { get; set; }
         [Required]
         public int CP { get; set; }
