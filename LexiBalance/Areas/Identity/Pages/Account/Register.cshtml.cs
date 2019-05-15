@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
@@ -19,16 +20,19 @@ namespace LexiBalance.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
+        private readonly LexiBalance.Models.LexiBalanceContext _context;
+
         public RegisterModel(
             UserManager<LexiBalanceUser> userManager,
             SignInManager<LexiBalanceUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender, LexiBalance.Models.LexiBalanceContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = context;
         }
 
         [BindProperty]
@@ -70,7 +74,8 @@ namespace LexiBalance.Areas.Identity.Pages.Account
                 {
                     nombreUsuario = nombreUsuario.Substring(0, 19);
                 }
-                var user = new LexiBalanceUser { UserName = "@" + nombreUsuario, Email = Input.Email };
+                nombreUsuario = "@" + nombreUsuario;
+                var user = new LexiBalanceUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -86,7 +91,20 @@ namespace LexiBalance.Areas.Identity.Pages.Account
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
+                    // Necesario para nada más crear la cuenta que ya aparezca bien el nombre de usuario en la barra de navegación
+                    user.UserName = nombreUsuario;
                     await _signInManager.SignInAsync(user, isPersistent: false);
+
+                    using (var connection = _context.Database.GetDbConnection())
+                    {
+                        connection.Open();
+
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = string.Format("UPDATE AspNetUsers SET UserName='{0}' WHERE Username='{1}'", nombreUsuario, user.Email);
+                            var cambiarnombre = command.ExecuteReader();
+                        }
+                    }
                     return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
