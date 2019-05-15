@@ -7,7 +7,6 @@ namespace LexiBalance.Models
     {
         public int ID { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z]+$")]
         public string Producto { get; set; }
         [Required]
         public int Cantidad { get; set; }
