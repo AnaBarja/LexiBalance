@@ -12,7 +12,7 @@ namespace LexiBalance.Models
         [RegularExpression(@"^[0-9a-zA-Z]+$", ErrorMessage = "Usa sólo números y letra.")]
         public string DNI { get; set; }
         [Required]
-        public int Telefono { get; set; }
+        public long Telefono { get; set; }
         [Required]
         [RegularExpression(@"^[0-9a-zA-Z/ /,]+$", ErrorMessage = "Usa sólo letras, números y coma.")]
         public string Direccion { get; set; }

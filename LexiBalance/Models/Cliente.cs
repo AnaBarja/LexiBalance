@@ -11,6 +11,6 @@ namespace LexiBalance.Models
         [Required]
         public int CP { get; set; }
         [Required]
-        public int Telefono { get; set; }
+        public long Telefono { get; set; }
     }
 }

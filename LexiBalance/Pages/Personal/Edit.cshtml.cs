@@ -15,7 +15,7 @@ namespace LexiBalance.Pages.Personal
         public static bool trabajadorExiste;
         public static string nombreInicial;
         public static string dniInicial;
-        public static int telfInicial;
+        public static long telfInicial;
         public static string direccionInicial;
 
         public EditModel(LexiBalance.Models.LexiBalanceContext context)

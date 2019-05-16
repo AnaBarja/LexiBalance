@@ -11,11 +11,11 @@ namespace LexiBalance.Pages.Clientes
     public class EditModel : PageModel
     {
         private readonly LexiBalance.Models.LexiBalanceContext _context;
-        public static List<int> numeroTelefonos;
+        public static List<long> numeroTelefonos;
         public static bool clienteExiste;
         public static string nombreInicial;
         public static int CPInicial;
-        public static int telfInicial;
+        public static long telfInicial;
 
         public EditModel(LexiBalance.Models.LexiBalanceContext context)
         {
@@ -39,7 +39,7 @@ namespace LexiBalance.Pages.Clientes
                 return NotFound();
             }
 
-            numeroTelefonos = new List<int>();
+            numeroTelefonos = new List<long>();
             clienteExiste = false;
             nombreInicial = Cliente.Nombre;
             CPInicial = Cliente.CP;
@@ -58,7 +58,7 @@ namespace LexiBalance.Pages.Clientes
                         {
                             if (!reader.IsDBNull(0))
                             {
-                                numeroTelefonos.Add(reader.GetInt32(0));
+                                numeroTelefonos.Add(reader.GetInt64(0));
                             }
                         }
                     }
@@ -97,7 +97,7 @@ namespace LexiBalance.Pages.Clientes
 
             using (var connection = _context.Database.GetDbConnection())
             {
-                int numTelefono = 0;
+                long numTelefono = 0;
                 connection.Open();
 
                 using (var command = connection.CreateCommand())
@@ -107,7 +107,7 @@ namespace LexiBalance.Pages.Clientes
                     {
                         if (reader.Read() && !reader.IsDBNull(0))
                         {
-                            numTelefono = reader.GetInt32(0);
+                            numTelefono = reader.GetInt64(0);
                         }
                     }
                 }
