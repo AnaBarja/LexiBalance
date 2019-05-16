@@ -10,7 +10,7 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
 - [x] Creación de usuario gerente y trabajador 
 - [x] Rediseño web
 - [x] Testear
-- [ ] Entrega con el informe final y vídeo explicativo
+- [x] Entrega con el informe final y vídeo explicativo
 
 ## Semana a semana
 
