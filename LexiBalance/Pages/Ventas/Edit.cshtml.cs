@@ -66,7 +66,7 @@ namespace LexiBalance.Pages.Ventas
                         while (reader.Read())
                         {
                             if (!reader.IsDBNull(1) && !reader.IsDBNull(0))
-                                trabajadores.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
+                                trabajadores.Add("#" + reader.GetInt32(0) + ". " + reader.GetString(1));
                         }
                     }
 
@@ -76,7 +76,7 @@ namespace LexiBalance.Pages.Ventas
                         while (reader.Read())
                         {
                             if (!reader.IsDBNull(1) && !reader.IsDBNull(0))
-                                clientes.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
+                                clientes.Add("#" + reader.GetInt32(0) + ". " + reader.GetString(1));
                         }
                     }
                 }

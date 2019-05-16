@@ -43,7 +43,7 @@ namespace LexiBalance.Pages.Ventas
                         {
                             if (!reader.IsDBNull(1) && !reader.IsDBNull(0) && !reader.IsDBNull(2))
                             {
-                                productos.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1) + " (" + reader.GetInt16(2) + " uds.)");
+                                productos.Add("#" + reader.GetInt32(0) + ". " + reader.GetString(1) + " (" + reader.GetInt32(2) + " uds.)");
                             }
                         }
                     }
@@ -54,7 +54,7 @@ namespace LexiBalance.Pages.Ventas
                         while (reader.Read())
                         {
                             if (!reader.IsDBNull(1) && !reader.IsDBNull(0))
-                                trabajadores.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
+                                trabajadores.Add("#" + reader.GetInt32(0) + ". " + reader.GetString(1));
                         }
                     }
 
@@ -64,7 +64,7 @@ namespace LexiBalance.Pages.Ventas
                         while (reader.Read())
                         {
                             if (!reader.IsDBNull(1) && !reader.IsDBNull(0))
-                                clientes.Add("#" + reader.GetInt16(0) + ". " + reader.GetString(1));
+                                clientes.Add("#" + reader.GetInt32(0) + ". " + reader.GetString(1));
                         }
                     }
                 }
