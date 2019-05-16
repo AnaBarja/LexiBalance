@@ -53,4 +53,4 @@ Siguiendo el [Diagrama de Gantt](https://ibb.co/X3kwp6w).
 - [x] Comprobación de la base de datos
 - [x] Correcto funcionamiento desde internet
 - [x] Grabación y edición del gameplay
-- [ ] Entrega del informe final
+- [x] Informe final
